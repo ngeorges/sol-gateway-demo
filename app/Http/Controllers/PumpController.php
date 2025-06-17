@@ -43,6 +43,7 @@ class PumpController extends Controller
     }
 
 
+
     public function done_fueling()
     {
         $pump = Pump::where('complete', 0)->orderBy('created_at', 'desc')->first();
