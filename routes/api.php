@@ -25,4 +25,5 @@ Route::post('start_fueling', [PumpController::class, 'start_fueling']);
 Route::get('start_fueling', [PumpController::class, 'start_fueling']);
 Route::post('done_fueling', [PumpController::class, 'done_fueling']);
 Route::get('done_fueling', [PumpController::class, 'done_fueling']);
+Route::get('gamezone', [GamezoneController::class, 'index']);
 

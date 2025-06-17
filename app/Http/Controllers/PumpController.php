@@ -29,8 +29,15 @@ class PumpController extends Controller
     public function start_fueling()
     {
         $pump = Pump::where('complete', 0)->orderBy('created_at', 'desc')->first();
-        $pump->pump_status = 2;
-        $pump->save();
+        if($pump){
+            $pump->pump_status = 2;
+            $pump->save();
+        }else{
+            $pump = Pump::create([
+                'pump_status' => 2,
+                'complete' => 0
+            ]);
+        }
 
         return response()->json($pump);
     }
@@ -39,9 +46,16 @@ class PumpController extends Controller
     public function done_fueling()
     {
         $pump = Pump::where('complete', 0)->orderBy('created_at', 'desc')->first();
-        $pump->pump_status = 3;
-        $pump->complete = 1;
-        $pump->save();
+        if($pump){
+            $pump->pump_status = 3;
+            $pump->complete = 1;
+            $pump->save();
+        }else{
+            $pump = Pump::create([
+                'pump_status' => 3,
+                'complete' => 1
+            ]);
+        }
 
         return response()->json($pump);
     }
@@ -63,9 +77,9 @@ class PumpController extends Controller
         //
 
         if($request->fuel_type = 1){
-            $price = '38.87';
+            $price = '44.87';
         }else{
-            $price = '42.66';
+            $price = '45.66';
         }
 
         if($request->amount == null){

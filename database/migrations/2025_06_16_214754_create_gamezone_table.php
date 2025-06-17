@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -11,23 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pumps', function (Blueprint $table) {
+        Schema::create('gamezone', function (Blueprint $table) {
             $table->id();
-            $table->string('pump_status');
-            $table->string('product_id');
-            $table->string('amount');
-            $table->string('volume');
-            $table->boolean('complete')->default(false);
+            $table->boolean('trigger')->default(false);
             $table->timestamps();
         });
-        
         // Auto-create the first record
-        DB::table('pumps')->insert([
-            'pump_status' => 0,
-            'product_id' => 0,
-            'amount' => 0,
-            'volume' => 0,
-            'complete' => false,
+        DB::table('gamezone')->insert([
+            'trigger' => false,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -38,6 +30,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pumps');
+        Schema::dropIfExists('gamezone');
     }
+
+    
 };
