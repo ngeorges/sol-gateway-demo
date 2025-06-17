@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('pumps', function (Blueprint $table) {
             $table->id();
-            $table->string('pump_status');
-            $table->string('product_id');
-            $table->string('amount');
-            $table->string('volume');
+            $table->string('pump_status')->default(0);
+            $table->string('product_id')->default(0);
+            $table->string('amount')->default(0);
+            $table->string('volume')->default(0);
             $table->boolean('complete')->default(false);
             $table->timestamps();
         });
-        
+
         // Auto-create the first record
         DB::table('pumps')->insert([
             'pump_status' => 0,
