@@ -12,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gamezone', function (Blueprint $table) {
+        Schema::create('gamezones', function (Blueprint $table) {
             $table->id();
             $table->boolean('trigger')->default(false);
             $table->timestamps();
         });
         // Auto-create the first record
-        DB::table('gamezone')->insert([
+        DB::table('gamezones')->insert([
             'trigger' => false,
             'created_at' => now(),
             'updated_at' => now(),
@@ -30,7 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gamezone');
+        Schema::dropIfExists('gamezones');
     }
 
     
